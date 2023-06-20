@@ -28,3 +28,10 @@ headerTitle.style.border = "solid 3px #000";
 var items =  document.getElementsByClassName('title');
 items[0].style.fontWeight="bold"
 items[0].style.color="#00FF00"
+
+var item = document.getElementsByClassName('list-group-item');
+item[2].style.backgroundColor = "#00FF00"
+
+for(var i = 0; i<item.length;i++){
+item[i].style.fontWeight="bold"
+}
