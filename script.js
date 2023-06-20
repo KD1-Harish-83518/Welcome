@@ -35,3 +35,11 @@ item[2].style.backgroundColor = "#00FF00"
 for(var i = 0; i<item.length;i++){
 item[i].style.fontWeight="bold"
 }
+ 
+var ite = document.getElementsByClassName("new-list");
+ite[0].style.color="green"
+ite[0].style.margin="5px"
+
+
+var ity = document.getElementsByTagName("li")
+ity[4].style.fontWeight = "bold"
