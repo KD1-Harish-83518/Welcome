@@ -1,25 +1,14 @@
-document.getElementById('detailsForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form submission
-  
-    // Retrieve form input values
-    var firstname = document.getElementById('name').value;
-    var lastname = document.getElementById('lname').value;
-  
-    // Create the appointment object
-    var appointment = {
-      firstname: firstname,
-      lastname: lastname
-    };
-  
-    // Make a POST request to store the appointment in the cloud
-    axios.post('https://crudcrud.com/api/your-api-endpoint', appointment)
+document.addEventListener('DOMContentLoaded', function () {
+    // Make a GET request to retrieve user details from crudcrud.com
+    axios.get('https://crudcrud.com/api/your-api-endpoint')
       .then(function (response) {
-        console.log('Appointment stored in the cloud:', response.data);
-        // Handle the response here
+        var user = response.data;
+        // Display the retrieved user details on the website
+        document.getElementById('name').value = user.firstname;
+        document.getElementById('lname').value = user.lastname;
       })
       .catch(function (error) {
-        console.log('Error storing appointment in the cloud:', error);
-        // Handle the error here
+        console.log('Error retrieving user details:', error);
       });
   });
   
