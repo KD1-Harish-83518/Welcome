@@ -1,74 +1,97 @@
-console.log('person1 shows ticket');
-console.log('person2 shows ticket');
-
-const preMovie = async () => {
-  const person3PromiseToShowTicketWhenWifeArrives = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('ticket'), 3000);
-  });
-
-  const getPopcorn = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('popcorn'), 3000);
-  });
-
-  const addButter = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('butter'), 3000);
-  });
-
-  let ticket = await person3PromiseToShowTicketWhenWifeArrives;
-  console.log(`got the ${ticket}`);
-  console.log(`Husband: we should go in now`);
-  console.log(`Wife: "I am hungry"`);
-
-  let popcorn = await getPopcorn;
-  console.log(`Husband: here is ${popcorn}`);
-  console.log(`Husband: we should go in now`);
-  console.log(`Wife: "I don't like popcorn without butter!"`);
-
-  let butter = await addButter;
-  console.log(`added ${butter}`);
-
-  console.log(`Husband: Anything else, darling?`);
-  console.log(`Wife: let's go, we are going to miss the preview`);
-  console.log(`Husband: thanks for the reminder *grin*`);
-
-  return ticket;
-};
-
-preMovie().then((t) => console.log(`person4 shows ${t}`));
-
-console.log('person4 shows ticket');
-console.log('person1 shows ticket');
-console.log('person2 shows ticket');
-
-console.log('person1 shows ticket');
-console.log('person2 shows ticket');
-
-const preMovie = async () => {
-  const person3PromiseToShowTicketWhenWifeArrives = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('ticket'), 3000);
-  });
-
-  const getPopcorn = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('popcorn'), 3000);
-  });
-
-  const getCandy = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('candy'), 3000);
-  });
-
-  const getCoke = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('coke'), 3000);
-  });
-
-  let ticket = await person3PromiseToShowTicketWhenWifeArrives;
+// GET REQUEST
+function getTodos() {
+    console.log('GET Request');
+  }
   
-  let [popcorn, candy, coke] = await Promise.all([getPopcorn, getCandy, getCoke]);
-
-  console.log(`got ${popcorn}, ${candy}, ${coke}`);
-
-  return ticket;
-};
-
-preMovie().then((t) => console.log(`person4 shows ${t}`));
-
-console.log('person4 shows ticket');
+  // POST REQUEST
+  function addTodo() {
+    console.log('POST Request');
+  }
+  
+  // PUT/PATCH REQUEST
+  function updateTodo() {
+    console.log('PUT/PATCH Request');
+  }
+  
+  // DELETE REQUEST
+  function removeTodo() {
+    console.log('DELETE Request');
+  }
+  
+  // SIMULTANEOUS DATA
+  function getData() {
+    console.log('Simultaneous Request');
+  }
+  
+  // CUSTOM HEADERS
+  function customHeaders() {
+    console.log('Custom Headers');
+  }
+  
+  // TRANSFORMING REQUESTS & RESPONSES
+  function transformResponse() {
+    console.log('Transform Response');
+  }
+  
+  // ERROR HANDLING
+  function errorHandling() {
+    console.log('Error Handling');
+  }
+  
+  // CANCEL TOKEN
+  function cancelToken() {
+    console.log('Cancel Token');
+  }
+  
+  // INTERCEPTING REQUESTS & RESPONSES
+  
+  // AXIOS INSTANCES
+  
+  // Show output in browser
+  function showOutput(res) {
+    document.getElementById('res').innerHTML = `
+    <div class="card card-body mb-4">
+      <h5>Status: ${res.status}</h5>
+    </div>
+  
+    <div class="card mt-3">
+      <div class="card-header">
+        Headers
+      </div>
+      <div class="card-body">
+        <pre>${JSON.stringify(res.headers, null, 2)}</pre>
+      </div>
+    </div>
+  
+    <div class="card mt-3">
+      <div class="card-header">
+        Data
+      </div>
+      <div class="card-body">
+        <pre>${JSON.stringify(res.data, null, 2)}</pre>
+      </div>
+    </div>
+  
+    <div class="card mt-3">
+      <div class="card-header">
+        Config
+      </div>
+      <div class="card-body">
+        <pre>${JSON.stringify(res.config, null, 2)}</pre>
+      </div>
+    </div>
+  `;
+  }
+  
+  // Event listeners
+  document.getElementById('get').addEventListener('click', getTodos);
+  document.getElementById('post').addEventListener('click', addTodo);
+  document.getElementById('update').addEventListener('click', updateTodo);
+  document.getElementById('delete').addEventListener('click', removeTodo);
+  document.getElementById('sim').addEventListener('click', getData);
+  document.getElementById('headers').addEventListener('click', customHeaders);
+  document
+    .getElementById('transform')
+    .addEventListener('click', transformResponse);
+  document.getElementById('error').addEventListener('click', errorHandling);
+  document.getElementById('cancel').addEventListener('click', cancelToken);
