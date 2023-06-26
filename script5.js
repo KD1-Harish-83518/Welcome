@@ -1,45 +1,74 @@
-const posts = [];
-let lastActivityTime = null;
+console.log('person1 shows ticket');
+console.log('person2 shows ticket');
 
-function createPost(post) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      posts.push(post);
-      resolve();
-    }, 2000);
+const preMovie = async () => {
+  const person3PromiseToShowTicketWhenWifeArrives = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('ticket'), 3000);
   });
-}
 
-function updateLastUserActivityTime() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      lastActivityTime = new Date().toLocaleString();
-      resolve();
-    }, 1000);
+  const getPopcorn = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('popcorn'), 3000);
   });
-}
 
-function deleteLastPost() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (posts.length > 0) {
-        const deletedPost = posts.pop();
-        resolve(deletedPost);
-      } else {
-        reject("ERROR: No posts available to delete");
-      }
-    }, 1000);
+  const addButter = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('butter'), 3000);
   });
-}
 
-Promise.all([createPost({ title: 'Post1' }), updateLastUserActivityTime()])
-  .then(() => {
-    console.log('Posts:', posts);
-    console.log('Last Activity Time:', lastActivityTime);
-  })
-  .then(() => deleteLastPost())
-  .then((deletedPost) => {
-    console.log('Deleted Post:', deletedPost);
-    console.log('Updated Posts:', posts);
-  })
-  .catch((error) => console.log(error));
+  let ticket = await person3PromiseToShowTicketWhenWifeArrives;
+  console.log(`got the ${ticket}`);
+  console.log(`Husband: we should go in now`);
+  console.log(`Wife: "I am hungry"`);
+
+  let popcorn = await getPopcorn;
+  console.log(`Husband: here is ${popcorn}`);
+  console.log(`Husband: we should go in now`);
+  console.log(`Wife: "I don't like popcorn without butter!"`);
+
+  let butter = await addButter;
+  console.log(`added ${butter}`);
+
+  console.log(`Husband: Anything else, darling?`);
+  console.log(`Wife: let's go, we are going to miss the preview`);
+  console.log(`Husband: thanks for the reminder *grin*`);
+
+  return ticket;
+};
+
+preMovie().then((t) => console.log(`person4 shows ${t}`));
+
+console.log('person4 shows ticket');
+console.log('person1 shows ticket');
+console.log('person2 shows ticket');
+
+console.log('person1 shows ticket');
+console.log('person2 shows ticket');
+
+const preMovie = async () => {
+  const person3PromiseToShowTicketWhenWifeArrives = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('ticket'), 3000);
+  });
+
+  const getPopcorn = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('popcorn'), 3000);
+  });
+
+  const getCandy = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('candy'), 3000);
+  });
+
+  const getCoke = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('coke'), 3000);
+  });
+
+  let ticket = await person3PromiseToShowTicketWhenWifeArrives;
+  
+  let [popcorn, candy, coke] = await Promise.all([getPopcorn, getCandy, getCoke]);
+
+  console.log(`got ${popcorn}, ${candy}, ${coke}`);
+
+  return ticket;
+};
+
+preMovie().then((t) => console.log(`person4 shows ${t}`));
+
+console.log('person4 shows ticket');
